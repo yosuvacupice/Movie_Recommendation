@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>IMDb: Screening Pick</title>
+    <link rel="stylesheet" href="css/FeaturedMovies.css" />
+    <link rel="stylesheet" href="css/Recommentation.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="icon" href="assets/imdblogowithbg.png" />
+    <script src="https://kit.fontawesome.com/bc980ca90f.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+        scroll-padding-top: 2rem;
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <!--------Floating Menu-------->
+    <div class="floating-menu">
+      <a href="MoviesMain.html" class="logo">
+          <img src="assets/imdblogowithbg.png" alt=""class="imdb-logo"> 
+      </a>
+      <div class="groupedmenus">
+          <a href="MoviesMain.html" class="menu-item1">
+              <span>Menu</span>
+          </a>
+          <a href="FeaturedMovies.html" class="menu-item1">
+              <span>Featured Films</span>
+          </a>
+          <a href="Recommentation.html" class="menu-item1">
+              <span>Recommendation</span>
+          </a>
+      </div>
+      <a href="#" class="menu-item">
+          <i class="fas fa-bookmark"></i><br>
+          <span>Save</span>
+      </a>
+      <a href="#" class="menu-item">
+        <i class='bx bx-search'></i><br>
+          <span>Search</span>
+      </a>
+      <a href="#" class="menu-item">
+          <i class="fas fa-user"></i><br>
+          <span>You!</span>
+      </a>
+  </div>
+
+    <!--------Carousel-container----------->
+    <div class="carousel-container">
+      <img
+        src="assets/Movies/moana2.jpg"
+        alt="Moana2"
+        class="myslides"
+        onclick="currentSlide(1)"
+      />
+      <img
+        src="assets/Movies/Amaran.jpg"
+        alt="Amaran"
+        class="myslides"
+        onclick="currentSlide(2)"
+      />
+      <img
+        src="assets/Movies/Gladiator2.webp"
+        alt="Gladiator2"
+        class="myslides"
+        onclick="currentSlide(3)"
+      />
+      <img
+        src="assets/Movies/Dunepart2.jpg"
+        alt="Dunepart2"
+        class="myslides"
+        onclick="currentSlide(4)"
+      />
+    </div>
+    <div style="text-align: center" class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+
+    <!---------Movie overview-------->
+
+    <div class="movieoverview">
+      <div class="movieheadline">
+        <h3 class="moviename">Amaran</h3>
+        <p class="yearduration">2024 . 2h 47m</p>
+        <div class="imdbrating">
+          <p class="imdbrate"><span>IMDb Rating</span></p>
+          <p class="rating"><i class="bx bxs-star"></i><span>8.9</span> /10</p>
+        </div>
+        <p class="yourrating" id="yourrateBtn">Your Rating</p>
+      </div>
+      <div id="rateModal" class="modal">
+        <div class="modal-content">
+          <h2 id="yourModal">Rate this</h2>
+          <h3>Amaran</h3>
+          <div class="stars">
+            <span class="star" data-value="1"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="2"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="3"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="4"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="5"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="6"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="7"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="8"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="9"><i class='bx bxs-star'></i></span>
+            <span class="star" data-value="10"><i class='bx bxs-star'></i></span>
+          </div>
+          <div class="modal-buttons">
+            <button id="cancelBtn" class="modal-btn">Cancel</button>
+            <button id="submitBtn" class="modal-btn">Rate</button>
+          </div>
+        </div>
+      </div>
+      <div class="movieteaser">
+        <img src="assets/Teaser/Amaranoverview.jpeg"alt="Amaran"class="poster"/>
+        <div class="teaser">
+          <img src="assets/Teaser/Amaranteaser.jpg" alt="Teaser" class="trailer" />
+          <a href="https://youtu.be/UPKLS4pRnSo?si=HxqzO-tB58shIXG_" class="trailerlink"><img src="assets/youtubeicon.png" alt="youtubeicon" class="youtube"></a>
+          <h4 class="official">Amaran | Official Trailer</h4>
+        </div>
+        <div class="collection">
+            <div class="videos">
+                <i class="bx bxs-videos"></i>
+                <p>7 videos</p>
+            </div>
+            <div class="images">
+                <i class="bx bx-images"></i>
+                <p>30 images</p>
+            </div>
+        </div>
+      </div>
+      <!----About movie------->
+      <div class="aboutmovie">
+        <div class="tags">
+          <span class="tag">Action</span>
+          <span class="tag">Drama</span>
+          <span class="tag">Biography</span>
+        </div>
+  
+        <p class="description">
+          The life of Major Mukund Varadarajan and is set against the backdrop of
+          the Qazipathri Operation in Shopian, Kashmir, which took place back in
+          2014.
+        </p>
+  
+        <div class="streaming">
+          <p class="streaming-label">In Streaming</p>
+          <img src="assets/netflix.png" alt="netflix" class="netflix-logo">
+        </div>
+      </div>
+    </div>
+    
+    <!-------- Top Picks -------->
+    <div class="top-picks">
+      <h2>You may like</h2>
+      <div class="movie-grid">
+        <div class="movie-card">
+          <img src="assets/Movies/Moana2.jpg" alt="Moana 2" />
+          <h3>Moana 2</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.7</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Moana 2">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/Gladiator2.webp" alt="Gladiator" />
+          <h3>Gladiator II</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>9.0</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Gladiator II">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/Kolaikaran.jpg" alt="Kolaikaran" />
+          <h3>Kolaigaran</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.0</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Kolaigaran">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/Dunepart2.webp" alt="Dune" />
+          <h3>Dune part II</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.6</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Dune part II">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/Amaran.jpg" alt="Amaran" />
+          <h3>Amaran</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.7</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Amaran">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/LuckyBhaskar.jpg" alt="Lucky Baskar" />
+          <h3>LuckyBaskar</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.8</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="LuckyBaskar">Rate</button>
+        </div>
+
+        <div class="Seemore" onclick="Seemore()">
+          <p>See more</p>
+        </div>
+      </div>
+    </div>
+
+    <!---------  Top-picks see more  ------->
+    <div class="top-picks see">
+      <div class="movie-grid">
+        <div class="movie-card">
+          <img src="assets/Movies/OKadhalkanmani.jpg" alt="OKadhalkanmani" />
+          <h3>OKadhalkanmani</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.7</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="OKadhalkanmani">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/RaaguThatha.jpg" alt="RaaguThatha" />
+          <h3>RaguThatha</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>9.0</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="RaguThatha">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/TheBatman.jpg" alt="TheBatman" />
+          <h3>The Batman</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.0</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="The Batman">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img
+            src="assets/Movies/TheHouseNextDoor.jpg"
+            alt="TheHouseNextDoor"
+          />
+          <h3>TheHouseNextDoor</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.6</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="TheHouseNextDoor">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/Moana2.jpg" alt="Moana2" />
+          <h3>Moana 2</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>8.7</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Moana 2">Rate</button>
+        </div>
+
+        <div class="movie-card">
+          <img src="assets/Movies/Gladiator2.webp" alt="Gladiator" />
+          <h3>Gladiator II</h3>
+          <div class="rating">
+            <i class="bx bxs-star"></i>
+            <span>9.0</span>
+          </div>
+          <button class="rate-btn" onclick="scrollToTop()" data-movie="Gladiator II">Rate</button>
+        </div>
+      </div>
+    </div>
+    <div class="signout">
+      <a href="#"><img src="assets/logouticon.png" alt="logout"></a>
+    </div>
+    <script>
+
+
+
+    </script>
+    <script src="js/FeaturedMovies.js"></script>
+  </body>
+</html>

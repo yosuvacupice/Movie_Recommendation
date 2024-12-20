@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb SignUp</title>
+    <link rel="stylesheet" href="css/Signin.css">
+    <link rel="icon" href="assets/imdblogowithbg.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="assets/imdblogowithbg.png">
+    <script src="https://kit.fontawesome.com/bc980ca90f.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+            scroll-padding-top: 2rem;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <img src="assets/signinsignupbg.jpg" alt="Movie Poster" class="background-img">
+        </div>
+        <div class="login-right">
+            <div class="login-box">
+                <img src="assets/imdblogowithbgshort.png" alt="IMDb Logo" class="logo">
+                <h3>Sign Up</h3>
+                <form id="signup-form" onsubmit="return validatePassword(event)">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                
+                    <label for="email">Email or Mobile Number</label>
+                    <input type="text" id="email" placeholder="Email/Mobile Number" required>
+                
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="At least 8 characters" required>
+                
+                    <label for="re-password">Re-enter Password</label>
+                    <input type="password" id="re-password" placeholder="Re-enter Password" required>
+                
+                    <button type="submit" class="btn-signup">Sign Up</button>
+                </form>
+                <p class="signup-text">
+                    Already have an account? <a href="Signin.html" class="signup-link">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function validatePassword(event) {
+            event.preventDefault();
+    
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const rePassword = document.getElementById("re-password").value;
+    
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return false;
+            }
+    
+            if (password !== rePassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+    
+            // Send data to backend
+            try {
+                const response = await fetch('http://127.0.0.1:8000/register/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+    
+                const result = await response.json();
+    
+                if (response.ok) {
+                    alert("Registration successful!");
+                    document.getElementById("signup-form").reset();
+                } else {
+                    alert("Error: " + JSON.stringify(result));
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Something went wrong. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
